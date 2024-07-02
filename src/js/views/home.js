@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Card } from "../component/card.jsx";
+import "../../styles/home.css";
 
 const Home = ({ addToFavorites, favoritesCount }) => {
     const { store, actions } = useContext(Context);
