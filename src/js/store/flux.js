@@ -2,7 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			peopleDetails: null,
-			people: null
+			people: null, 
+			favorites: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
 
-export const Navbar = ({ addToFavorites, favoritesCount }) => {
+export const Navbar = ({ favorites, favoritesCount }) => {
     return (
         <nav className="navbar mb-3 p-3">
             <Link to="/">
@@ -14,15 +14,9 @@ export const Navbar = ({ addToFavorites, favoritesCount }) => {
                         Favorites [{favoritesCount}]
                     </button>
                     <ul className="dropdown-menu dropdown-menu-end mt-2">
-                        {favoritesCount > 0 ? (
-                            favorites.map((favorite, index) => (
-                                <li key={index}>
-                                    <a className="dropdown-item" href="#">Favorite {favorite}</a>
-                                </li>
-                            ))
-                        ) : (
-                            <li><span className="dropdown-item">No favorites yet</span></li>
-                        )}
+                        <li>
+                            <a className="dropdown-item" href="#">Favorite</a>
+                        </li>
                     </ul>
                 </div>
             </div>
