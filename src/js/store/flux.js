@@ -1,43 +1,90 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            peopleDetails: null,
-            people: null, 
-            favorites: []
-        },
+			people: [],
+			vehicles: [],
+			planets: [],
+			peopleDetails: null,
+			vehicleDetails: null,
+			planetDetails: null,
+			favorites: []
+		},
         actions: {
-            addFavorite: (favorite) => {
-                const store = getStore();
-                const newFavorites = [...store.favorites, favorite];
-                setStore({ favorites: newFavorites });
-            },
-            
-            removeFavorite: (uid) => {
-                const store = getStore();
-                const newFavorites = store.favorites.filter(favorite => favorite.uid !== uid);
-                setStore({ favorites: newFavorites });
-            },
-
             getPeople: async () => {
                 try {
                     const resp = await fetch('https://www.swapi.tech/api/people');
-                    if (!resp.ok) throw new Error('Error fetching people')
+                    if (!resp.ok) throw new Error('Error fetching people');
                     const data = await resp.json();
-                    setStore({people: data.results})
+                    setStore({ people: data.results });
                 } catch (error) {
                     console.log(error);
                 }
             },
-
-            getPeopleDetails: async (uid) => {
+            getVehicles: async () => {
                 try {
-                    const resp = await fetch('https://www.swapi.tech/api/people/'+uid);
-                    if (!resp.ok) throw new Error('Error fetching people')
+                    const resp = await fetch('https://www.swapi.tech/api/vehicles');
+                    if (!resp.ok) throw new Error('Error fetching vehicles');
                     const data = await resp.json();
-                    setStore({peopleDetails: data.result})
+                    setStore({ vehicles: data.results });
                 } catch (error) {
                     console.log(error);
                 }
+            },
+            getPlanets: async () => {
+                try {
+                    const resp = await fetch('https://www.swapi.tech/api/planets');
+                    if (!resp.ok) throw new Error('Error fetching planets');
+                    const data = await resp.json();
+                    setStore({ planets: data.results });
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            getPeopleDetails: async (uid) => {
+				try {
+					const resp = await fetch('https://www.swapi.tech/api/people/'+uid);
+					console.log(resp)
+					if (!resp.ok) throw new Error('Error fetching people')
+					const data = await resp.json();
+					console.log(data)
+					setStore({peopleDetails: data.result})
+				} catch (error) {
+					console.log(error);
+				}
+			},
+            getVehiclesDetails: async (uid) => {
+				try {
+					const resp = await fetch(`https://www.swapi.tech/api/vehicles/${uid}`);
+					if (!resp.ok) throw new Error('Error fetching vehicle');
+					const data = await resp.json();
+					setStore(prevStore => ({
+						...prevStore,
+						vehiclesDetails: data.result
+					}));
+				} catch (error) {
+					console.log(error);
+				}
+			},
+			getPlanetsDetails: async (uid) => {
+				try {
+					const resp = await fetch(`https://www.swapi.tech/api/planets/${uid}`);
+					if (!resp.ok) throw new Error('Error fetching planet');
+					const data = await resp.json();
+					setStore(prevStore => ({
+						...prevStore,
+						planetsDetails: data.result
+					}));
+				} catch (error) {
+					console.log(error);
+				}
+			},
+            addFavorite: (item) => {
+                const store = getStore();
+                setStore({ favorites: [...store.favorites, item] });
+            },
+            removeFavorite: (uid) => {
+                const store = getStore();
+                setStore({ favorites: store.favorites.filter(fav => fav.uid !== uid) });
             }
         }
     };

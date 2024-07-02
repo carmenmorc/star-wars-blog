@@ -20,7 +20,7 @@ export const Navbar = () => {
                         {store.favorites.length > 0 ? (
                             store.favorites.map((favorite, index) => (
                                 <li key={index}>
-                                    <Link className="dropdown-item" to={`/details/${favorite.uid}`}>
+                                    <Link className="dropdown-item" to={`/details/${favorite.type}/${favorite.uid}`}>
                                         {favorite.name}
                                     </Link>
                                 </li>

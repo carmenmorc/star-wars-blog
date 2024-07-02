@@ -10,22 +10,16 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 
 const Layout = () => {
-    const [favorites, setFavorites] = useState([]);
-
-    const addToFavorites = (name) => {
-        if (!favorites.includes(name)) {
-            setFavorites([...favorites, name]);
-        }
-    };
-
     return (
         <div>
             <BrowserRouter basename={process.env.BASENAME || ""}>
                 <ScrollToTop>
-                    <Navbar addToFavorites={addToFavorites} favoritesCount={favorites.length} />
+                    <Navbar />
                     <Routes>
-                        <Route path="/" element={<Home addToFavorites={addToFavorites} favoritesCount={favorites.length} />} />
-                        <Route path="/details/:uid" element={<Details />} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/details/characters/:uid" element={<Details />} />
+                        <Route path="/details/vehicles/:uid" element={<Details />} />
+                        <Route path="/details/planets/:uid" element={<Details />} />
                         <Route path="*" element={<h1>May the 404 be with you.</h1>} />
                     </Routes>
                 </ScrollToTop>
@@ -33,6 +27,5 @@ const Layout = () => {
         </div>
     );
 };
-
 
 export default injectContext(Layout);
