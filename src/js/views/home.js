@@ -1,19 +1,20 @@
-import React, { useContext } from "react";
-import "../../styles/home.css"; // Asegúrate de importar tus estilos CSS aquí
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Card } from "../component/card.jsx";
 
-const Home = () => {
+const Home = ({ addToFavorites, favoritesCount }) => {
     const { store, actions } = useContext(Context);
 
     return (
         <div className="text-center mt-5">
-            <div className="container d-flex overflow-auto">
-                {/* Usamos d-flex para flexbox y overflow-auto para permitir el desplazamiento horizontal */}
-                {store.people?.map(el => <Card key={el.uid} name={el.name} uid={el.uid} />)}
+            <div className="container d-flex flex-wrap">
+                {store.people?.map(el => (
+                    <Card key={el.uid} name={el.name} uid={el.uid} addToFavorites={addToFavorites} />
+                ))}
             </div>
         </div>
     );
 };
 
 export default Home;
+

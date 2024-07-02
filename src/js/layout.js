@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,25 +9,30 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 
-//create your first component
 const Layout = () => {
-	const basename = process.env.BASENAME || "";
-	console.log("Layout component is being rendered");
+    const [favorites, setFavorites] = useState([]);
 
-	return (
-		<div>
-			<BrowserRouter basename={basename}>
-				<ScrollToTop>
-					<Navbar />
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/details/:uid" element={<Details />} />
-						<Route path="*" element={<h1>May the 404 be with you.</h1>} />
-					</Routes>
-				</ScrollToTop>
-			</BrowserRouter>
-		</div>
-	);
+    const addToFavorites = (name) => {
+        if (!favorites.includes(name)) {
+            setFavorites([...favorites, name]);
+        }
+    };
+
+    return (
+        <div>
+            <BrowserRouter basename={process.env.BASENAME || ""}>
+                <ScrollToTop>
+                    <Navbar addToFavorites={addToFavorites} favoritesCount={favorites.length} />
+                    <Routes>
+                        <Route path="/" element={<Home addToFavorites={addToFavorites} favoritesCount={favorites.length} />} />
+                        <Route path="/details/:uid" element={<Details />} />
+                        <Route path="*" element={<h1>May the 404 be with you.</h1>} />
+                    </Routes>
+                </ScrollToTop>
+            </BrowserRouter>
+        </div>
+    );
 };
+
 
 export default injectContext(Layout);
