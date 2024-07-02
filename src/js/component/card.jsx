@@ -4,7 +4,17 @@ import "../../styles/card.css";
 import { Context } from "../store/appContext";
 
 export const Card = ({ name, uid }) => {
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
+    const [isFavorite, setIsFavorite] = useState(store.favorites.some(fav => fav.uid === uid));
+
+    const handleFavoriteClick = () => {
+        if (isFavorite) {
+            actions.removeFavorite(uid);
+        } else {
+            actions.addFavorite({ name, uid });
+        }
+        setIsFavorite(!isFavorite);
+    };
 
     return (
         <div>
@@ -17,7 +27,8 @@ export const Card = ({ name, uid }) => {
                     <h1 className="card-title">{name}</h1>
                     <p className="card-text">Star Wars: The Force unites Jedi and Sith in an eternal struggle of light versus dark across planets and starships.</p>
                     <Link to={`/details/${uid}`} className="btn btn-light cardbtn">Learn More!</Link>
-                    <button className="btn btn-light amarillo cardbtn">★ 
+                    <button className="btn btn-light amarillo cardbtn" onClick={handleFavoriteClick}>
+                        {isFavorite ? '★' : '☆'}
                     </button>
                 </div>
             </div>
