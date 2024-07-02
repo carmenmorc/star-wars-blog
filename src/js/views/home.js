@@ -8,7 +8,7 @@ const Home = ({ addToFavorites, favoritesCount }) => {
 
     return (
         <div className="text-center mt-5">
-            <div className="container d-flex flex-wrap">
+            <div className="container d-flex overflow-auto carta">
                 {store.people?.map(el => (
                     <Card key={el.uid} name={el.name} uid={el.uid} addToFavorites={addToFavorites} />
                 ))}
