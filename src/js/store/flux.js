@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (!resp.ok) throw new Error('Error fetching people')
 					const data = await resp.json();
 					console.log(data)
-					setStore({peopleDetails: data.results})
+					setStore({peopleDetails: data.result})
 				} catch (error) {
 					console.log(error);
 				}

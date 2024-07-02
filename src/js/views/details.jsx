@@ -22,7 +22,7 @@ export const Details = () => {
                     </figure>
                 </div>
                 <div>
-                    <p>Name: {store.peopleDetails?.properties.name}</p>
+                    <p>Name: {store.peopleDetails?.properties.name} </p>
                     <p>Gender: {store.peopleDetails?.properties.gender}</p>
                     <p>Eye Color: {store.peopleDetails?.properties.eye_color}</p>
                     <p>Height: {store.peopleDetails?.properties.height}</p>
