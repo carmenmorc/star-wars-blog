@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-wrap: nowrap; /* Evita que las tarjetas se envuelvan verticalmente */
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    padding-bottom: 20px; /* Añade un espacio al final para asegurar que la barra de desplazamiento no se solape con el contenido inferior */
+}
+
+.container > * {
+    flex: 0 0 auto; /* Establece el tamaño de las tarjetas basado en su contenido */
+    margin-right: 10px; /* Espacio entre tarjetas, ajusta según necesites */
+}

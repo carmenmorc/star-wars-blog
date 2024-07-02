@@ -1,22 +1,19 @@
-import React from "react";
-import "../../styles/home.css";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import "../../styles/home.css"; // Asegúrate de importar tus estilos CSS aquí
+import { Context } from "../store/appContext";
+import { Card } from "../component/card.jsx";
 
 const Home = () => {
-	console.log("Se está renderizando la home");
-	return (
-		<div>
-			<h1>XXXX</h1>
-			<div className="card" style={{ width: '18rem' }}>
-				<img src="https://starwars-visualguide.com/#/characters/1" className="card-img-top" alt="" />
-				<div className="card-body">
-					<h5 className="card-title">Card title</h5>
-					<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<Link to="#" className="btn btn-primary">Go somewhere</Link>
-				</div>
-			</div>
-		</div>
-	);
+    const { store, actions } = useContext(Context);
+
+    return (
+        <div className="text-center mt-5">
+            <div className="container d-flex overflow-auto">
+                {/* Usamos d-flex para flexbox y overflow-auto para permitir el desplazamiento horizontal */}
+                {store.people?.map(el => <Card key={el.uid} name={el.name} uid={el.uid} />)}
+            </div>
+        </div>
+    );
 };
 
-export default Home; 
+export default Home;

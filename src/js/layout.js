@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from "./views/home.js";
-import { Details } from "./views/details.js";
+import { Details } from "./views/details.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -21,7 +21,7 @@ const Layout = () => {
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/details/:theid" element={<Details />} />
+						<Route path="/details/:uid" element={<Details />} />
 						<Route path="*" element={<h1>May the 404 be with you.</h1>} />
 					</Routes>
 				</ScrollToTop>
