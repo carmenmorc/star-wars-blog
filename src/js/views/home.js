@@ -13,7 +13,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 title">
             <h1>Star Wars Characters</h1>
             <div className="container d-flex overflow-auto carta">
                 {store.people?.map(el => (

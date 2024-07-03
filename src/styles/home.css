@@ -4,17 +4,21 @@
 
 .carta {
     &::-webkit-scrollbar {
-        width: 10px; /* Ancho de la barra de desplazamiento */
-        height: 10px; /* Altura de la barra de desplazamiento */
+        width: 10px;
+        height: 10px;
     }
 
     &::-webkit-scrollbar-track {
-        background-color: black; /* Color de fondo de la barra de desplazamiento */
-        border-radius: 5px; /* Bordes redondeados */
+        background-color: black; 
+        border-radius: 5px;
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: yellow; /* Color del pulgar (parte móvil) de la barra de desplazamiento */
-        border-radius: 10px; /* Bordes redondeados */
+        background-color: yellow; 
+        border-radius: 10px; 
     }
+}
+
+.title h1{
+    margin-top: 50px;
 }

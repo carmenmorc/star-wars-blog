@@ -54,26 +54,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
             getVehiclesDetails: async (uid) => {
 				try {
-					const resp = await fetch(`https://www.swapi.tech/api/vehicles/${uid}`);
+					const resp = await fetch('https://www.swapi.tech/api/vehicles/'+uid);
+                    console.log(resp)
 					if (!resp.ok) throw new Error('Error fetching vehicle');
 					const data = await resp.json();
-					setStore(prevStore => ({
-						...prevStore,
-						vehiclesDetails: data.result
-					}));
+                    console.log(data)
+					setStore({vehiclesDetails: data.result});
 				} catch (error) {
 					console.log(error);
 				}
 			},
 			getPlanetsDetails: async (uid) => {
 				try {
-					const resp = await fetch(`https://www.swapi.tech/api/planets/${uid}`);
+					const resp = await fetch('https://www.swapi.tech/api/planets/'+uid);
+                    console.log(resp)
 					if (!resp.ok) throw new Error('Error fetching planet');
 					const data = await resp.json();
-					setStore(prevStore => ({
-						...prevStore,
-						planetsDetails: data.result
-					}));
+                    console.log(data)
+					setStore({planetsDetails: data.result});
 				} catch (error) {
 					console.log(error);
 				}
